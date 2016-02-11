@@ -41,3 +41,55 @@ class Drone(object):
 
     def wait(self, turns):
         pass
+
+class Command(object):
+    def __init__(self, drone):
+        self.drone = drone
+
+class LoadCommand(Command):
+    def __init__(self, drone, warehouse, product_type, quantity):
+        super(LoadCommand, self).__init__(self, drone, warehouse, product_type, quantity)
+        self.warehouse = warehouse
+        self.product_type = product_type
+        self.quantity = quantity
+
+class DeliverCommand(Command):
+    def __init__(self, drone, order):
+        super(DeliverCommand, self).__init__(self, drone, order)
+        self.order = order
+
+class UnloadCommand(Command):
+    def __init__(self, drone, warehouse, product_type, quantity):
+        super(UnloadCommand, self).__init__(self, drone, warehouse, product_type, quantity)
+        self.warehouse = warehouse
+        self.product_type = product_type
+        self.quantity = quantity
+
+class WaitCommand(Command):
+    def __init__(self, drone, turns):
+        super(WaitCommand, self).__init__(self, drone, turns)
+        self.turns = turns
+
+class Board(object):
+    def __init__(self, width, height, drones, max_turns, products, warehouses,
+                 orders):
+        self.width = width
+        self.height = height
+        self.drones = drones
+        self.max_turns = max_turns
+        self.products = products
+        self.warehouses = warehouses
+        self.orders = orders
+
+
+# parser.py
+# input: txt file
+# output: Board
+
+# strategy.py
+# input: Board
+# output: Commands[]
+
+# simulator.py
+# input: Board, Commands[]
+# output: Score
